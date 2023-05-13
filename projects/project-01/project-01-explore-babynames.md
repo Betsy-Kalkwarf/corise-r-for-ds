@@ -446,7 +446,7 @@ tbl_names_vowel_consonant |>
   # Reorder `first_last` by the median `pct_births`
   mutate(first_last = fct_reorder(first_last, pct_births, median)) |>
   # Initialize a ggplot of `pct_births` vs. `year`
-  ggplot(aes(x= pct_births, y = year)) +
+  ggplot(aes(x= year, y = pct_births)) +
   # Add an area layer with fill = first_last
   geom_area(aes(fill = first_last)) +
   # Facet wrap plot by `sex`
@@ -456,8 +456,8 @@ tbl_names_vowel_consonant |>
       title = glue::glue("Trends in Names By First and Last Letter"),
       subtitle = "Consonants vs. Vowels",
       caption = "Source: SSA",
-      x = "% Births",
-      y = 'Year'
+      x = "Year",
+      y = '% Births'
     ) +
 
   # Clean up x and y axis scales
