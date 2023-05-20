@@ -5,15 +5,10 @@ output: github_document
 
 ```{r setup, message = FALSE, include = FALSE}
 library(tidyverse)
-install.packages("zoo")
-library("zoo")
-
-library(janitor)
-library(Hmisc)
 
 knitr::opts_chunk$set(
   echo = TRUE,
-  eval = FALSE,
+  eval = TRUE,
   collapse = TRUE,
   comment = "#>",
   fig.path = "img/",
@@ -259,9 +254,8 @@ We now want to figure out the probability that a randomly selected person with a
 
 We will start by writing a function that estimates the quantiles of the age distribution for people with a given name and sex.
 
-```
 
-```
+
 
 
 
