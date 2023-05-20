@@ -5,6 +5,11 @@ output: github_document
 
 ```{r setup, message = FALSE, include = FALSE}
 library(tidyverse)
+library(zoo)
+
+library(janitor)
+library(Hmisc)
+
 knitr::opts_chunk$set(
   echo = TRUE,
   eval = FALSE,
@@ -40,7 +45,7 @@ Let us start by reading in the babynames data from `data/names.csv.gz`.
 
 ```{r tbl-names, message = FALSE}
 # Load the tidyverse package
-library(tidyverse)
+#library(tidyverse)
 
 # Read data/names.csv.gz into a data frame named `tbl_names`
 tbl_names <- readr::read_csv(
@@ -164,9 +169,7 @@ We can extend the lifetables this by using three useful functions:
 
 Given that we want to interpolate for all combinations of `sex` and `age`, we first need to group by `sex` and `age`, then use `complete` and `full_seq` to add the missing combinations, and finally `zoo::na.approx` to interpolate the `NA` values using cubic interpolation. We will `ungroup` the data at the end as the grouping is no longer necessary.
 
-```{r}
-install.packages("zoo")
-```
+
 
 ```{r tbl-lifetables-extended}
 tbl_lifetables_extended <- tbl_lifetables |> 
@@ -229,6 +232,8 @@ Note how imputing the data provides more realistic estimates of the probabilitie
 
 Let us now join `tbl_names` with `tbl_lifetables_extended_2022` and add two extra columns that compute the probability that the person is alive and the number of people with that name who are expected to be alive in that year.
 
+
+
 ```{r tbl-names-extended}
 
 ```{r tbl-names-extended}
@@ -257,11 +262,7 @@ We will start by writing a function that estimates the quantiles of the age dist
 
 ```
 
-```{r estimate-age-stats}
-pkgs <- c("Hmisc", "janitor")
-options(repos = c(CRAN = "https://packagemanager.rstudio.com/cran/latest"))
-install.packages(pkgs)
-```
+
 
 ```{r estimate-age-stats}
 # Function to estimate age statistics
@@ -405,7 +406,7 @@ tbl_names_extended_age |>
     linewidth = 5
   ) +
   # Add a point layer:
-  geom_point(size = 2, color = "blue") +
+  geom_point(size = 2, color = "darkblue") +
   # Add labels (title, subtitle, x, y)
   labs(
     title = "Median Age of Top 25 Female Names",
