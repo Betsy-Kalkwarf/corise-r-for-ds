@@ -405,7 +405,7 @@ tbl_names_extended_age |>
     linewidth = 5
   ) +
   # Add a point layer:
-  geom_point(size = 2, color = "darkblue") +
+  geom_point(size = 2, color = "blue") +
   # Add labels (title, subtitle, x, y)
   labs(
     title = "Median Age of Top 25 Female Names",
