@@ -5,7 +5,8 @@ output: github_document
 
 ```{r setup, message = FALSE, include = FALSE}
 library(tidyverse)
-library(zoo)
+install.packages("zoo")
+library("zoo")
 
 library(janitor)
 library(Hmisc)
@@ -224,7 +225,7 @@ tbl_lifetables_extended_2022 |>
   
   # Update theme to move plot title
   theme(plot.title.position = 'plot')
-```
+
 
 Note how imputing the data provides more realistic estimates of the probabilities as seen by comparing the smooth curve with the steps.
 
@@ -234,7 +235,7 @@ Let us now join `tbl_names` with `tbl_lifetables_extended_2022` and add two extr
 
 
 
-```{r tbl-names-extended}
+
 
 ```{r tbl-names-extended}
 tbl_names_extended <- tbl_names |> 
